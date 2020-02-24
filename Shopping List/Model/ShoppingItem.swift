@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct ShoppingItem : Codable, Equatable {
-    let item: String
-    let hasBeenAdded: Bool
+    var item: String
+    var hasBeenAdded: Bool
     
 }

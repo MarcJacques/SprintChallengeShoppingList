@@ -8,10 +8,14 @@
 
 import Foundation
 
-class ShoppingItemController {
+class ShoppingItemsController {
     private(set) var shoppingList: [ShoppingItem] = []
     
     let itemNames = ["Apple", "Grapes", "Milk", "Muffin", "Popcorn", "Soda", "Strawberries"]
+    var addedItems: [ShoppingItem] {
+        let added = shoppingList.filter { $0.hasBeenAdded == true }
+        return added
+    }
     
     let userDefaults = UserDefaults.standard
     
@@ -29,6 +33,10 @@ class ShoppingItemController {
         }
     }
     
+    func notAdded(for shoppingItem: ShoppingItem, hasBeenAdded: Bool) {
+        guard let index = shoppingList.firstIndex(of: shoppingItem) else { return }
+        shoppingList[index].hasBeenAdded = hasBeenAdded
+    }
     
     private var persistentFileURL: URL? {
         let fileManager = FileManager.default

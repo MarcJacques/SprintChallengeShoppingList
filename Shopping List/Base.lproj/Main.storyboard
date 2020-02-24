@@ -12,7 +12,7 @@
         <!--Shopping List-->
         <scene sceneID="QCs-j4-7EE">
             <objects>
-                <collectionViewController id="xuM-jg-fsQ" sceneMemberID="viewController">
+                <collectionViewController id="xuM-jg-fsQ" customClass="ShoppingListCollectionViewController" customModule="Shopping_List" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZeN-9K-7w3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCell" id="rd7-gE-2lz">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShopCell" id="rd7-gE-2lz" customClass="ShoppingItemCollectionViewCell" customModule="Shopping_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eay-vF-CoQ">
@@ -60,6 +60,11 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="180" height="200"/>
+                                <connections>
+                                    <outlet property="hasBeenAddedLabel" destination="ASm-n4-dzF" id="m5k-VX-GEF"/>
+                                    <outlet property="itemImage" destination="BcK-mH-sBU" id="CuX-rJ-ZBF"/>
+                                    <outlet property="nameLabel" destination="2Tv-jt-fP9" id="BaC-UV-Sea"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -70,7 +75,7 @@
                     <navigationItem key="navigationItem" title="Shopping List" id="ywC-CD-LoE">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="7hw-Ns-AsW">
                             <connections>
-                                <segue destination="FyS-ib-zKl" kind="show" id="w2h-yT-aLf"/>
+                                <segue destination="FyS-ib-zKl" kind="show" identifier="ShowOrderDetail" id="w2h-yT-aLf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -82,13 +87,13 @@
         <!--Submit Order-->
         <scene sceneID="wTG-tV-DlQ">
             <objects>
-                <viewController id="FyS-ib-zKl" sceneMemberID="viewController">
+                <viewController id="FyS-ib-zKl" customClass="SubmitOrderDetailViewController" customModule="Shopping_List" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yNo-6G-2xh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZM9-ts-3mm">
-                                <rect key="frame" x="20" y="156" width="374" height="136"/>
+                                <rect key="frame" x="20" y="156" width="374" height="176"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You currently have x item(s) in your shopping list. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5O-Bc-3N1">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
@@ -106,6 +111,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjM-id-EdT">
+                                        <rect key="frame" x="0.0" y="146" width="374" height="30"/>
+                                        <state key="normal" title="Send Order"/>
+                                        <connections>
+                                            <action selector="placeOrderTapped:" destination="FyS-ib-zKl" eventType="touchUpInside" id="grJ-wa-PPP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -118,6 +130,11 @@
                         <viewLayoutGuide key="safeArea" id="pl6-e4-IiE"/>
                     </view>
                     <navigationItem key="navigationItem" title="Submit Order" id="O1k-3D-Uyg"/>
+                    <connections>
+                        <outlet property="addressTextField" destination="rgw-J1-EMT" id="b7h-0D-Tlo"/>
+                        <outlet property="itemsInCartLabel" destination="D5O-Bc-3N1" id="LjN-kK-Hcx"/>
+                        <outlet property="nameTextField" destination="N0X-Gn-Ubq" id="gj5-jt-uHn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYL-kL-I9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
