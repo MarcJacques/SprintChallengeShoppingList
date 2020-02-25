@@ -51,6 +51,7 @@ class ShoppingListCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ShoppingItemCollectionViewCell else { return UICollectionViewCell() }
+        
         let shoppingItem = shoppingItemsController.shoppingList[indexPath.item]
         cell.shoppingItem = shoppingItem
         cell.shoppingItemsController = shoppingItemsController

@@ -4,12 +4,11 @@
 //
 //  Created by Marc Jacques on 2/23/20.
 //  Copyright © 2020 Lambda School. All rights reserved.
-//
+
 
 import UIKit
 
 class ShoppingItemCollectionViewCell: UICollectionViewCell {
-    
     
     @IBOutlet weak var hasBeenAddedLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
@@ -23,10 +22,10 @@ class ShoppingItemCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var hasBeenAdded: Bool {
+    override var isSelected: Bool {
         didSet {
-            guard let shoppingItemController = shoppingItemsController, let item = shoppingItem else { return }
-            shoppingItemController.notAdded(for: item, hasBeenAdded: !item.hasBeenAdded)
+            guard let shoppingItemsController = shoppingItemsController, let item = shoppingItem else { return }
+            shoppingItemsController.notAdded(for: item, hasBeenAdded: !item.hasBeenAdded)
             shoppingItem?.hasBeenAdded = !item.hasBeenAdded
             updateViews()
         }
@@ -34,6 +33,7 @@ class ShoppingItemCollectionViewCell: UICollectionViewCell {
     
     func updateViews() {
         guard let shoppingItem = shoppingItem else { return }
+        
         itemImage.image = UIImage(named: shoppingItem.item)
         nameLabel.text = shoppingItem.item
         hasBeenAddedLabel.text = shoppingItem.hasBeenAdded ? "Added" : "Not Added"
