@@ -9,7 +9,7 @@
 import Foundation
 
 class ShoppingItemsController {
-    private(set) var shoppingList: [ShoppingItem] = []
+    var shoppingList: [ShoppingItem] = []
     
     let itemNames = ["Apple", "Grapes", "Milk", "Muffin", "Popcorn", "Soda", "Strawberries"]
     var addedItems: [ShoppingItem] {
@@ -33,9 +33,12 @@ class ShoppingItemsController {
         }
     }
     
-    func notAdded(for shoppingItem: ShoppingItem, hasBeenAdded: Bool) {
+    func Added(for shoppingItem: ShoppingItem) {
         guard let index = shoppingList.firstIndex(of: shoppingItem) else { return }
-        shoppingList[index].hasBeenAdded = hasBeenAdded
+        if index != -1 {
+            shoppingList[index].hasBeenAdded.toggle()
+            saveToPersistentStore()
+        }
     }
     
     private var persistentFileURL: URL? {

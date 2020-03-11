@@ -25,7 +25,7 @@ class ShoppingItemCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             guard let shoppingItemsController = shoppingItemsController, let item = shoppingItem else { return }
-            shoppingItemsController.notAdded(for: item, hasBeenAdded: !item.hasBeenAdded)
+            shoppingItemsController.Added(for: item)
             shoppingItem?.hasBeenAdded = !item.hasBeenAdded
             updateViews()
         }
